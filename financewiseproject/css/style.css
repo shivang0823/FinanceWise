@@ -1,5 +1,427 @@
+/* =======================================================
+   FINANCEWISE - MAIN STYLESHEET
+   Project: Personal Finance Guide (Internship Project)
+   Author:  Web Development Intern
+   ======================================================= */
+
+/* -------------------------------------------------------
+   1. GLOBAL / BODY
+------------------------------------------------------- */
 body {
-  font-family: Arial, sans-serif;
-  margin: 0;
-  padding: 2rem;
+    font-family: Arial, sans-serif;
+    background-color: #f8f9fa;
+    color: #212529;
+    /* Smooth transition for dark mode toggle */
+    transition: background-color 0.3s, color 0.3s;
+}
+
+/* Offset scrolling so sticky navbar doesn't cover headings */
+html {
+    scroll-padding-top: 70px;
+}
+
+/* Every section gets comfortable vertical breathing room */
+section {
+    padding: 60px 0;
+}
+
+/* -------------------------------------------------------
+   2. NAVBAR
+------------------------------------------------------- */
+/* The navbar uses Bootstrap's bg-dark; we just add
+   a bottom border for a subtle visual separation       */
+.navbar {
+    border-bottom: 2px solid #198754; /* green accent */
+}
+
+.navbar-brand {
+    font-size: 1.4rem;
+    font-weight: bold;
+}
+
+/* -------------------------------------------------------
+   3. HERO SECTIONS
+   (shared across all pages)
+------------------------------------------------------- */
+.hero-section {
+    background-color: #0d6efd; /* Bootstrap primary blue */
+    color: #ffffff;
+    padding: 80px 0;
+    text-align: center;
+}
+
+.hero-section h1 {
+    font-size: 2.4rem;
+    font-weight: bold;
+    margin-bottom: 15px;
+}
+
+.hero-section p {
+    font-size: 1.1rem;
+    margin-bottom: 25px;
+    color: #d8e8ff; /* slightly lighter white */
+}
+
+/* -------------------------------------------------------
+   4. SECTION HEADINGS
+------------------------------------------------------- */
+.section-heading {
+    text-align: center;
+    margin-bottom: 40px;
+}
+
+.section-heading h2 {
+    font-size: 2rem;
+    font-weight: bold;
+    color: #0d6efd;
+}
+
+.section-heading p {
+    color: #6c757d; /* Bootstrap muted color */
+    font-size: 1rem;
+    max-width: 600px;
+    margin: 0 auto;
+}
+
+/* -------------------------------------------------------
+   5. FEATURE / SERVICE CARDS
+------------------------------------------------------- */
+.feature-card {
+    /* Box model: padding inside, border around, radius on corners */
+    padding: 30px 20px;
+    border: 1px solid #dee2e6;
+    border-radius: 8px;
+    background-color: #ffffff;
+    text-align: center;
+    /* Simple shadow for depth */
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.08);
+    /* Smooth transition for hover effect */
+    transition: transform 0.3s, box-shadow 0.3s;
+    height: 100%;
+}
+
+/* Hover effect: slight scale up and bigger shadow */
+.feature-card:hover {
+    transform: scale(1.03);
+    box-shadow: 0 6px 18px rgba(0, 0, 0, 0.15);
+}
+
+.feature-card .icon {
+    font-size: 2.5rem;
+    color: #0d6efd;
+    margin-bottom: 15px;
+    display: block;
+}
+
+.feature-card h4 {
+    font-weight: bold;
+    margin-bottom: 10px;
+}
+
+.feature-card p {
+    color: #6c757d;
+    font-size: 0.95rem;
+}
+
+/* -------------------------------------------------------
+   6. TESTIMONIAL CARDS
+------------------------------------------------------- */
+.testimonial-card {
+    background-color: #ffffff;
+    border: 1px solid #dee2e6;
+    border-radius: 8px;
+    padding: 25px 20px;
+    text-align: center;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.08);
+    transition: transform 0.3s, background-color 0.3s;
+    height: 100%;
+}
+
+.testimonial-card:hover {
+    transform: scale(1.03);
+    background-color: #e8f5e9; /* very light green on hover */
+}
+
+/* Circular profile picture */
+.testimonial-card img {
+    width: 80px;
+    height: 80px;
+    border-radius: 50%; /* makes image circular */
+    object-fit: cover;
+    border: 3px solid #0d6efd;
+    margin-bottom: 15px;
+}
+
+.testimonial-card h6 {
+    font-weight: bold;
+    margin-bottom: 3px;
+}
+
+.testimonial-card .designation {
+    color: #6c757d;
+    font-size: 0.85rem;
+    margin-bottom: 12px;
+}
+
+.testimonial-card .review {
+    font-style: italic;
+    color: #495057;
+    font-size: 0.95rem;
+}
+
+/* -------------------------------------------------------
+   7. ABOUT SECTION
+------------------------------------------------------- */
+.about-section {
+    background-color: #ffffff;
+}
+
+/* -------------------------------------------------------
+   8. CONTACT PREVIEW SECTION (Home page)
+------------------------------------------------------- */
+.contact-preview {
+    background-color: #0d6efd;
+    color: #ffffff;
+    text-align: center;
+    padding: 60px 0;
+}
+
+.contact-preview h2 {
+    font-size: 2rem;
+    margin-bottom: 15px;
+}
+
+.contact-preview p {
+    color: #d8e8ff;
+    margin-bottom: 25px;
+}
+
+/* -------------------------------------------------------
+   9. CALCULATOR CARDS (Calculators page)
+------------------------------------------------------- */
+.calc-card {
+    background-color: #ffffff;
+    border: 1px solid #dee2e6;
+    border-radius: 8px;
+    padding: 25px;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.08);
+    margin-bottom: 30px;
+}
+
+.calc-card h5 {
+    font-weight: bold;
+    color: #0d6efd;
+    margin-bottom: 20px;
+    border-bottom: 2px solid #e9ecef;
+    padding-bottom: 10px;
+}
+
+/* Result output boxes */
+.result-box {
+    background-color: #f1f3f5;
+    border-left: 4px solid #198754; /* green left border */
+    padding: 12px 16px;
+    border-radius: 4px;
+    margin-top: 15px;
+    display: none; /* hidden until calculation runs */
+}
+
+.result-box p {
+    margin: 4px 0;
+    font-size: 0.95rem;
+}
+
+/* -------------------------------------------------------
+   10. BUDGET PLANNER (budget-planner.html)
+------------------------------------------------------- */
+.budget-form-section {
+    background-color: #ffffff;
+}
+
+/* -------------------------------------------------------
+   11. SAVINGS PLANNER (savings-planner.html)
+------------------------------------------------------- */
+.savings-form-section {
+    background-color: #ffffff;
+}
+
+/* -------------------------------------------------------
+   12. CONTACT PAGE
+------------------------------------------------------- */
+.contact-info-box {
+    background-color: #ffffff;
+    border: 1px solid #dee2e6;
+    border-radius: 8px;
+    padding: 20px 25px;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.06);
+}
+
+.contact-info-box h5 {
+    color: #0d6efd;
+    font-weight: bold;
+    margin-bottom: 15px;
+}
+
+.contact-info-item {
+    display: flex;
+    align-items: flex-start;
+    margin-bottom: 15px;
+    gap: 12px;
+}
+
+.contact-info-item i {
+    font-size: 1.3rem;
+    color: #198754;
+    margin-top: 2px;
+}
+
+/* -------------------------------------------------------
+   13. FOOTER
+------------------------------------------------------- */
+footer {
+    background-color: #212529; /* very dark gray */
+    color: #adb5bd;            /* soft light gray text */
+    padding: 40px 0 20px;
+    border-top: 3px solid #198754;
+}
+
+footer h5 {
+    color: #ffffff;
+    font-weight: bold;
+    margin-bottom: 15px;
+}
+
+footer ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+footer ul li {
+    margin-bottom: 8px;
+}
+
+footer ul li a {
+    color: #adb5bd;
+    text-decoration: none;
+    transition: color 0.2s;
+}
+
+footer ul li a:hover {
+    color: #198754; /* green on hover */
+}
+
+.social-icons a {
+    color: #adb5bd;
+    font-size: 1.4rem;
+    margin-right: 12px;
+    text-decoration: none;
+    transition: color 0.2s;
+}
+
+.social-icons a:hover {
+    color: #0d6efd; /* blue on hover */
+}
+
+.footer-bottom {
+    border-top: 1px solid #495057;
+    margin-top: 30px;
+    padding-top: 15px;
+    text-align: center;
+    font-size: 0.85rem;
+    color: #6c757d;
+}
+
+/* -------------------------------------------------------
+   14. SCROLL TO TOP BUTTON
+------------------------------------------------------- */
+#scrollTopBtn {
+    /* Positioned in bottom-right corner */
+    position: fixed;
+    bottom: 25px;
+    right: 25px;
+    display: none;  /* hidden by default; shown via JS */
+    z-index: 999;
+    width: 45px;
+    height: 45px;
+    border-radius: 50%;
+    border: none;
+    background-color: #0d6efd;
+    color: #ffffff;
+    font-size: 1.2rem;
+    cursor: pointer;
+    box-shadow: 0 3px 8px rgba(0, 0, 0, 0.2);
+    transition: background-color 0.2s;
+}
+
+#scrollTopBtn:hover {
+    background-color: #0b5ed7;
+}
+
+/* -------------------------------------------------------
+   15. DARK MODE
+------------------------------------------------------- */
+body.dark-mode {
+    background-color: #121212;
+    color: #e0e0e0;
+}
+
+body.dark-mode .feature-card,
+body.dark-mode .testimonial-card,
+body.dark-mode .calc-card,
+body.dark-mode .contact-info-box,
+body.dark-mode .about-section,
+body.dark-mode .budget-form-section,
+body.dark-mode .savings-form-section {
+    background-color: #1e1e1e;
+    border-color: #333333;
+    color: #e0e0e0;
+}
+
+body.dark-mode .card {
+    background-color: #1e1e1e;
+    border-color: #333333;
+    color: #e0e0e0;
+}
+
+body.dark-mode .form-control,
+body.dark-mode .form-select {
+    background-color: #2c2c2c;
+    border-color: #444444;
+    color: #e0e0e0;
+}
+
+body.dark-mode footer {
+    background-color: #0a0a0a;
+}
+
+body.dark-mode .result-box {
+    background-color: #2a2a2a;
+}
+
+/* -------------------------------------------------------
+   16. YOUTUBE VIDEO EMBED (Home page)
+------------------------------------------------------- */
+.video-section {
+    background-color: #f1f3f5;
+    padding: 60px 0;
+}
+
+.video-wrapper {
+    /* Responsive embed container */
+    position: relative;
+    padding-bottom: 56.25%; /* 16:9 aspect ratio */
+    height: 0;
+    overflow: hidden;
+    border-radius: 8px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+}
+
+.video-wrapper iframe {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    border: 0;
 }
