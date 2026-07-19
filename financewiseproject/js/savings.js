@@ -55,9 +55,9 @@ function calculateSavings() {
     const options = { year: 'numeric', month: 'long' };
     const completionDateStr = currentDate.toLocaleDateString('en-US', options);
 
-    // Format currency helper
+    // Format currency helper using global settings
     const formatCurrency = (val) => {
-        return new Intl.NumberFormat('en-US', { style: 'currency', currency: 'USD', maximumFractionDigits: 0 }).format(val);
+        return window.formatCurrencyGlobal(val);
     };
 
     // Update result UI elements
@@ -67,9 +67,7 @@ function calculateSavings() {
     document.getElementById('displayDate').innerText = completionDateStr;
     document.getElementById('displayMonthly').innerText = formatCurrency(monthlySaving);
 
-    // Progress bar (Since they start today, we can represent progress in saving.
-    // Let's show the progress bar at 100% capacity representing the goal, or let's animate it up to show the monthly slice or just set it to 100% with animated stripe).
-    // Or we can say "Monthly Saving is X% of your goal".
+    // Progress bar
     const progressPercent = Math.min(((monthlySaving / goalAmount) * 100), 100).toFixed(1);
     const progressPercentEl = document.getElementById('progressPercent');
     const progressBar = document.getElementById('savingsProgress');
@@ -84,9 +82,6 @@ function calculateSavings() {
 
     // Display the results block
     savingsResults.style.display = 'block';
-    
-    // Smooth scroll to results
-    savingsResults.scrollIntoView({ behavior: 'smooth' });
 }
 
 function resetSavings() {
@@ -102,3 +97,10 @@ function resetSavings() {
     document.getElementById('savingsError').style.display = 'none';
     document.getElementById('savingsResults').style.display = 'none';
 }
+
+// Dynamically update UI on currency selection changes
+window.addEventListener('currencyChange', () => {
+    if (document.getElementById('savingsResults').style.display === 'block') {
+        calculateSavings();
+    }
+});

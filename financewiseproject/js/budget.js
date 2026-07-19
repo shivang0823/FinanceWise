@@ -37,9 +37,9 @@ function calculateBudget() {
     const totalExpenses = rent + food + transport + entertainment + other;
     const remainingSavings = income - totalExpenses;
 
-    // Format currency helper
+    // Format currency helper using global settings
     const formatCurrency = (val) => {
-        return new Intl.NumberFormat('en-US', { style: 'currency', currency: 'USD' }).format(val);
+        return window.formatCurrencyGlobal(val);
     };
 
     // Update summary cards
@@ -87,9 +87,6 @@ function calculateBudget() {
 
     // Display the results section
     budgetResults.style.display = 'block';
-    
-    // Smooth scroll to results
-    budgetResults.scrollIntoView({ behavior: 'smooth' });
 }
 
 function resetBudget() {
@@ -103,3 +100,10 @@ function resetBudget() {
     document.getElementById('budgetError').style.display = 'none';
     document.getElementById('budgetResults').style.display = 'none';
 }
+
+// Dynamically update UI on currency selection changes
+window.addEventListener('currencyChange', () => {
+    if (document.getElementById('budgetResults').style.display === 'block') {
+        calculateBudget();
+    }
+});

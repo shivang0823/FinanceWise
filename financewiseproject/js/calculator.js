@@ -1,8 +1,8 @@
 // calculator.js - Financial Calculators Logic
 
-// Currency Formatter Helper
+// Currency Formatter Helper using global settings
 const formatUSD = (val) => {
-    return new Intl.NumberFormat('en-US', { style: 'currency', currency: 'USD' }).format(val);
+    return window.formatCurrencyGlobal(val);
 };
 
 // ========================================================
@@ -180,3 +180,11 @@ function calculateBudgetSplit() {
     resultBox.style.display = 'block';
     progressDiv.style.display = 'block';
 }
+
+// Dynamically update UI on currency selection changes
+window.addEventListener('currencyChange', () => {
+    if (document.getElementById('emiResult').style.display === 'block') calculateEMI();
+    if (document.getElementById('siResult').style.display === 'block') calculateSI();
+    if (document.getElementById('ciResult').style.display === 'block') calculateCI();
+    if (document.getElementById('budgetSplitResult').style.display === 'block') calculateBudgetSplit();
+});
